@@ -22,8 +22,9 @@ jobs:
         run: |
           mkdir -p build
           cd latex_src
-          pdflatex -interaction=nonstopmode -output-directory=../build main.tex
-          pdflatex -interaction=nonstopmode -output-directory=../build main.tex
+          pdflatex -interaction=nonstopmode main.tex
+          pdflatex -interaction=nonstopmode main.tex
+          mv main.pdf ../build/
 
       - name: Commit generated PDFs
         run: |
