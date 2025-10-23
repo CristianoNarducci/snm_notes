@@ -21,9 +21,9 @@ jobs:
       - name: Compile LaTeX files
         run: |
           mkdir -p build
-          for texfile in latex_src/*.tex; do
-            pdflatex -interaction=nonstopmode -output-directory=build "$texfile"
-          done
+          cd latex_src
+          pdflatex -interaction=nonstopmode -output-directory=../build main.tex
+          pdflatex -interaction=nonstopmode -output-directory=../build main.tex
 
       - name: Commit generated PDFs
         run: |
