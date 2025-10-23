@@ -1,4 +1,4 @@
-name: Build LaTeX and Create PR
+name: Build LaTeX and Commit PDF
 
 on:
   workflow_dispatch:
@@ -6,6 +6,9 @@ on:
     branches:
       - main
       - master
+
+permissions:
+  contents: write
 
 jobs:
   build-pdf:
@@ -33,8 +36,6 @@ jobs:
           git add build/*.pdf
           git commit -m "Add generated PDFs from LaTeX sources" || echo "No changes to commit"
 
-      - name: Push changes to a new branch
+      - name: Push changes to the same branch
         run: |
-          BRANCH="generated-pdfs-$(date +%Y%m%d%H%M%S)"
-          git checkout -b $BRANCH
-          git push origin $BRANCH
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
