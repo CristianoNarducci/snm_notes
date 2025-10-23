@@ -517,7 +517,9 @@ KOMA-script documentation for details.}]{fancyhdr}
 %----------------------------------------------------------------------------------------
 
 \ifbool{hyperrefsupport}{% If the nohyperref class option has not been specified
-\AtEndPreamble{\RequirePackage{hyperref}
+\AtEndPreamble{%
+  \RequirePackage{hyperref}%
+  \RequirePackage{hyperxmp}%
 \hypersetup{pdfpagemode={UseOutlines},
 bookmarksopen=true,
 bookmarksopenlevel=0,
