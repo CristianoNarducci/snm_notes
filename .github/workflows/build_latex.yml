@@ -19,21 +19,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up LaTeX environment
-        run: sudo apt-get update && sudo apt-get install -y texlive-full
+        run: sudo apt-get update
 
       - name: Compile LaTeX files
         uses: hspaans/latexmk-action@v2.1.0
         with:
           format: pdf
           filename: ../latex_src/main.tex
-
-      - name: Commit generated PDFs
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add build/*.pdf
-          git commit -m "Add generated PDFs from LaTeX sources" || echo "No changes to commit"
-
-      - name: Push changes to the same branch
-        run: |
-          git push origin HEAD:${GITHUB_REF#refs/heads/}
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-book
+          path: main.pdf
