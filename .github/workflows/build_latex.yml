@@ -13,6 +13,9 @@ permissions:
 jobs:
   build-pdf:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./latex_src
 
     steps:
       - name: Checkout repository
@@ -26,7 +29,7 @@ jobs:
         with:
           format: pdf
           filename: main.tex
-          options: -cd ../../latex_src/
+          
         
       - name: Upload PDF
         uses: actions/upload-artifact@v4
