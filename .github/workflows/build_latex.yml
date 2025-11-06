@@ -28,7 +28,7 @@ jobs:
         uses: antaljanosbenjamin/compile-latex@v1.0.0
         with:
     # The LaTeX file to be compiled, relative to the root of the repository.
-          file: ./latex-src/main.tex
+          file: ./latex_src/main.tex
     # The directory for output files, relative to the root of the repository.
     
     # Additional arguments to pass over to latexmk.
