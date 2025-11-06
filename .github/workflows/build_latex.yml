@@ -26,6 +26,11 @@ jobs:
         root_file: main.tex
         working_directory: ./latex_src/
         args: -pdf -interaction=nonstopmode -bibtex-
+    - name: Upload LaTeX log
+      uses: actions/upload-artifact@v4
+      with:
+        name: latex-log
+        path: ./latex_src/main.log
     - name: Upload PDF
       uses: actions/upload-artifact@v4
       with:
