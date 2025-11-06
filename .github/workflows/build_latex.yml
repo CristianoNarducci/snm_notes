@@ -34,7 +34,7 @@ jobs:
           # The working directory for the LaTeX engine
           working_directory: ./latex_src/
           # The LaTeX engine to be invoked
-          args: -pdf -interaction=nonstopmode
+          args: -pdf -interaction=nonstopmode -nobibtex
           
     
           
