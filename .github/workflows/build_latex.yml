@@ -13,35 +13,20 @@ permissions:
 jobs:
   build-pdf:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./latex_src
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up LaTeX environment
+      run: sudo apt-get update
+    - name: LaTeX Action
+      uses: fudan-mse/latex-action@v0.0.1
+      with:
+        root_file: main.tex
+        working_directory: ./latex_src/
+        args: -pdf -interaction=nonstopmode -bibtex-
+    - name: Upload PDF
+      uses: actions/upload-artifact@v4
+      with:
+        name: compiled-book
+        path: main.pdf
 
-      - name: Set up LaTeX environment
-        run: sudo apt-get update
-
-      - name: LaTeX Action
-  # You may pin to the exact commit or the version.
-  # uses: fudan-mse/latex-action@eb2eb7ba472011213ac0a6286fd776494623362c
-        uses: fudan-mse/latex-action@v0.0.1
-        with:
-          # The root LaTeX file to be compiled
-          root_file: main.tex
-          # The working directory for the LaTeX engine
-          working_directory: ./latex_src/
-          # The LaTeX engine to be invoked
-          args: -pdf -interaction=nonstopmode -nobibtex
-          
-    
-          
-          
-        
-      - name: Upload PDF
-        uses: actions/upload-artifact@v4
-        with:
-          name: compiled-book
-          path: main.pdf
