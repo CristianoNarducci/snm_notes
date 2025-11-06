@@ -18,12 +18,14 @@ jobs:
       uses: actions/checkout@v4
     - name: Set up LaTeX environment
       run: sudo apt-get update
+    - name: Create empty .bbl file
+      run: echo "% empty bibliography" > ./latex_src/main.bbl
     - name: LaTeX Action
       uses: fudan-mse/latex-action@v0.0.1
       with:
         root_file: main.tex
         working_directory: ./latex_src/
-        args: -pdf -interaction=nonstopmode -bibtex- -f
+        args: -pdf -interaction=nonstopmode -bibtex-
     - name: Upload PDF
       uses: actions/upload-artifact@v4
       with:
