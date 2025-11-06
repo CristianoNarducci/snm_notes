@@ -25,11 +25,15 @@ jobs:
         run: sudo apt-get update
 
       - name: Compile LaTeX files
-        uses: hspaans/latexmk-action@v2.1.0
+        uses: antaljanosbenjamin/compile-latex@v1.0.0
         with:
-          format: pdf
-          filename: main.tex
-          options: -cd ./latex_src/
+    # The LaTeX file to be compiled, relative to the root of the repository.
+          file: ./latex-src/main.tex
+    # The directory for output files, relative to the root of the repository.
+    
+    # Additional arguments to pass over to latexmk.
+    
+          
           
         
       - name: Upload PDF
