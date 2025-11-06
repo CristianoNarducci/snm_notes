@@ -29,6 +29,7 @@ jobs:
         with:
           format: pdf
           filename: main.tex
+          options: -cd ./latex_src/
           
         
       - name: Upload PDF
